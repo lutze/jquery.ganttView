@@ -158,8 +158,7 @@ div.ganttview-block-text {
 div.ganttview-block div.ui-resizable-handle.ui-resizable-s {
 	bottom: -0;
 }
-<<<<<<< HEAD
-=======
+
 
 /* bootstrap css fix - begin */ 
 /* Uncomment if bootstrap.js is giving you issues */
@@ -173,4 +172,3 @@ div.ganttview-block div.ui-resizable-handle.ui-resizable-s {
 box-sizing: initial;
 }
 */
->>>>>>> 0.8.9-dev-patch1
