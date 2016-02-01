@@ -53,7 +53,7 @@ div.ganttview-hzheader-day {
 
 div.ganttview-vtheader {
 	margin-top: 41px;
-	width: auto;
+	width: 250px;
 	overflow: hidden;
 	background-color: #fff;
 }
@@ -83,6 +83,7 @@ div.ganttview-vtheader-series-name {
 
 div.ganttview-slide-container {
 	overflow: auto;
+	width: auto;
 	border-left: 1px solid #999;
 }
 
