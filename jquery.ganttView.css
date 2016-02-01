@@ -53,7 +53,7 @@ div.ganttview-hzheader-day {
 
 div.ganttview-vtheader {
 	margin-top: 41px;
-	width: 240px;
+	width: 250px;
 	overflow: hidden;
 	background-color: #fff;
 }
@@ -83,6 +83,7 @@ div.ganttview-vtheader-series-name {
 
 div.ganttview-slide-container {
 	overflow: auto;
+	width: auto;
 	border-left: 1px solid #999;
 }
 
@@ -100,6 +101,9 @@ div.ganttview-grid-row-cell.ganttview-weekend {
 	background-color: #fafafa;
 }
 
+div.ganttview-grid-row-cell.ganttview-today {
+	background-color: #F7F9FF !important;
+}
 
 /* Blocks */
 
@@ -116,7 +120,11 @@ div.ganttview-block:hover {
 div.ganttview-block-container {
 	height: 28px;
 	padding-top: 4px;
+<<<<<<< HEAD
     position: relative;
+=======
+	text-align: left;
+>>>>>>> 0.8.9-dev-patch1
 }
 
 div.ganttview-block {
@@ -150,3 +158,19 @@ div.ganttview-block-text {
 div.ganttview-block div.ui-resizable-handle.ui-resizable-s {
 	bottom: -0;
 }
+<<<<<<< HEAD
+=======
+
+/* bootstrap css fix - begin */ 
+/* Uncomment if bootstrap.js is giving you issues */
+/* https://github.com/thegrubbsian/jquery.ganttView/issues/29 */
+/*
+#ganttChart div,
+#ganttChart div:before,
+#ganttChart div:after {
+-webkit-box-sizing: initial;
+-moz-box-sizing: initial;
+box-sizing: initial;
+}
+*/
+>>>>>>> 0.8.9-dev-patch1

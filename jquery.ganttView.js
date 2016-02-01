@@ -8,6 +8,7 @@ MIT License Applies
 Options
 -----------------
 showWeekends: boolean
+showToday: boolean
 data: object
 cellWidth: number
 cellHeight: number
@@ -46,6 +47,7 @@ behavior: {
         var els = this;
         var defaults = {
             showWeekends: true,
+            showToday: true,
             cellWidth: 21,
             cellHeight: 31,
             slideWidth: 400,
@@ -216,10 +218,11 @@ behavior: {
               else
               {
                 var itemDiv = jQuery("<div>", { "class": "ganttview-vtheader-item" });
-                itemDiv.append(jQuery("<div>", {
-                    "class": "ganttview-vtheader-item-name",
-                    "css": { "height": (data[i].series.length * cellHeight) + "px" }
-                }).append(data[i].name));
+		if ($.trim(data[i].name).length > 0)
+	                itemDiv.append(jQuery("<div>", {
+        	            "class": "ganttview-vtheader-item-name",
+                	    "css": { "height": (data[i].series.length * cellHeight) + "px" }
+	                }).append(data[i].name));
                 var seriesDiv = jQuery("<div>", { "class": "ganttview-vtheader-series" });
                 for (var j = 0; j < data[i].series.length; j++)
                 {
@@ -527,7 +530,7 @@ behavior: {
         }
 
         function bindBlockClick(div, callback) {
-            jQuery("div.ganttview-block", div).live("click", function () {
+            jQuery("div.ganttview-block", div).on("click", function () {
                 if (callback) { callback(jQuery(this).data("block-data")); }
             });
         }
@@ -607,27 +610,30 @@ behavior: {
             return date.getDay() % 6 == 0;
         },
 
-        getBoundaryDatesFromData: function (data, minDays) {
-            var minStart = new Date(); maxEnd = new Date();
-            for (var i = 0; i < data.length; i++) {
-                for (var j = 0; j < data[i].series.length; j++) {
-                    var start = Date.parse(data[i].series[j].start);
-                    var end = Date.parse(data[i].series[j].end)
-                    if (i == 0 && j == 0) { minStart = start; maxEnd = end; }
-                    if (minStart.compareTo(start) == 1) { minStart = start; }
-                    if (maxEnd.compareTo(end) == -1) { maxEnd = end; }
-                }
-            }
-            
-            // Insure that the width of the chart is at least the slide width to avoid empty
-            // whitespace to the right of the grid
-            if (DateUtils.daysBetween(minStart, maxEnd) < minDays) {
-                maxEnd = minStart.clone().addDays(minDays);
-            }
-            
-            return [minStart, maxEnd];
-        }
+        isToday: function (date) {
+            return date.isToday();
+        },
 
+		getBoundaryDatesFromData: function (data, minDays) {
+			var minStart = new Date(); maxEnd = new Date();
+			for (var i = 0; i < data.length; i++) {
+				for (var j = 0; j < data[i].series.length; j++) {
+					var start = Date.parse(data[i].series[j].start);
+					var end = Date.parse(data[i].series[j].end)
+					if (i == 0 && j == 0) { minStart = start; maxEnd = end; }
+					if (minStart.compareTo(start) == 1) { minStart = start; }
+					if (maxEnd.compareTo(end) == -1) { maxEnd = end; }
+				}
+			}
+			
+			// Insure that the width of the chart is at least the slide width to avoid empty
+			// whitespace to the right of the grid
+			if (DateUtils.daysBetween(minStart, maxEnd) < minDays) {
+				maxEnd = minStart.clone().addDays(minDays);
+			}
+			
+			return [minStart, maxEnd];
+		}
     };
 
 })(jQuery);
